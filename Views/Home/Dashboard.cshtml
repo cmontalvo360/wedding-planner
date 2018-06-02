@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+}
+<h1>Welcome to the Wedding Planner, @ViewBag.userName</h1>
+<a href="logout">Log Out</a>
+
+<table style="width:100%">
+    <tr>
+        <th>Wedding</th>
+        <th>Date</th>
+        <th>Guest</th>
+        <th>Action</th>
+    </tr>
+    @{
+        
+    }
+    @foreach(var x in ViewBag.weddings){
+        <tr>
+            <td><a href="ShowWedding/@x.WeddingId">@x.WedderOne & @x.WedderTwo</a></td>
+            <td>@x.WeddDate</td>
+            <td>@x.CreatorId</td>
+                @{
+                    if(ViewBag.user == @x.CreatorId){
+                        <td>
+                        <a href="Delete/@x.WeddingId">Delete</a>
+                        </td>
+                    }
+                    else{
+                        bool chk = false;
+                        foreach(var y in x.Attendees){
+                            if(y.UserId == ViewBag.user){
+                                chk = true;
+                            }
+                        }
+                        if(chk == true){
+                            <td>
+                            <a href="Un-RSVP/@x.WeddingId">Un-RSVP</a>
+                            </td>
+                        }
+                        else{
+                            <td>
+                            <a href="RSVP/@x.WeddingId">RSVP</a>
+                            </td>
+                        }
+                    }
+                }
+        </tr>
+    }
+</table>
+
+<form asp-controller="Home" asp-action="NewWedding">
+    <button>New Wedding</button>
+</form>

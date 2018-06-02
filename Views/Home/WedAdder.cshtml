@@ -1,0 +1,21 @@
+﻿@model Wedding_Planner.Models.Wedding
+@{
+    ViewData["Title"] = "About";
+}
+
+<h1>Plan Your Wedding</h1>
+
+<a href="Home">Dashboard</a>
+<a href="logout">Logout</a>
+
+<form asp-controller="Home" asp-action="AddWeddingToDb" method="POST">
+    <label asp-for="WedderOne"></label>
+    <input asp-for="WedderOne"> <br>
+    <label asp-for="WedderTwo"></label>
+    <input asp-for="WedderTwo"><br>
+    <label asp-for="WeddDate"></label>
+    <input input type="Date" asp-for="WeddDate"><br>
+    <label asp-for="WedAddress"></label>
+    <input asp-for="WedAddress"><br>
+    <button type="submit">Create</button>
+</form>

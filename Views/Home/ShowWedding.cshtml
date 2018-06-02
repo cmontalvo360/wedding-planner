@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Wedding Planner";
+}
+
+<h1>@ViewBag.showWed.WedderOne and @ViewBag.showWed.WedderTwo Wedding</h1>
+
+<a asp-controller="Home" asp-action="Dashboard">Dashboard</a>
+<a asp-controller="Home" asp-action="Logout">Logout</a>
+
+<h3>Date: @ViewBag.showWed.WeddDate</h3>
+<h4>Guests:</h4>
+
+@foreach(var x in @ViewBag.showWed.Attendees){
+    <p>@x.User.FirstName @x.User.LastName</p>
+}
+
